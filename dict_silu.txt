@@ -1,0 +1,49 @@
+在线词典：
+1、需求分析
+    明确功能和客户端使用流程
+2、技术分析
+    网络并发模型：多进程 TCP并发
+    两级界面怎么互相切换
+    数据存储（mysql数据库project_dict):dict(单词表）
+        还需要创建什么表？怎么创建？
+    单词表：
+        id      word            mean
+    用户表：
+        id      user            password  ....
+    create table user(id int primary key auto_increment,
+    user varchar(50) not null,
+    password varchar(50) not null);
+    查询记录:
+         id     word        time    user_id
+    create table history(id int primary key auto_increment.
+    word varchar(30),
+    time datetime default now(),
+    user_id int,
+    constraint user_fk
+    foreign key(user_id) references user(id));
+3、划分功能模块（拆）怎么封装
+    *注册
+    *登录
+    *查单词
+    *历史记录
+4、通信协议
+            请求类型        请求参量
+   *注册      R            user_name  password
+   *登录      L            user_name  password
+   *查单词     Q            word   user_name
+   *历史记录    H           user_name
+5、分功能设计
+    搭建架构（总分的处理方法）
+    注册：
+        客户端:输入用户名密码
+               发送请求
+               接收反馈  Y注册成功  N在一级界面
+         服务端：接收请求
+                判断用户是否可以注册
+                反馈结果
+                Y将用户插入数据库  N则不理睬
+    登录
+    查单词
+    历史记录
+
+
